@@ -1,8 +1,10 @@
 import { defineConfig } from 'vite';
 import { glob } from 'glob';
+import path from 'path';
 import injectHTML from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
 import SortCss from 'postcss-sort-media-queries';
+import handlebarsPlugin from '@yoichiro/vite-plugin-handlebars';
 
 export default defineConfig(({ command }) => {
   return {
@@ -42,6 +44,9 @@ export default defineConfig(({ command }) => {
       FullReload(['./src/**/**.html']),
       SortCss({
         sort: 'mobile-first',
+      }),
+      handlebarsPlugin({
+        partialDirectoryPath: path.resolve(__dirname, 'templates', 'partials'),
       }),
     ],
   };

@@ -1,0 +1,33 @@
+{{#each this}}
+  <li class='gallery-item'>
+    <article>
+      <a class='gallery-item-link' href='{{largeImageURL}}'>
+        <img
+          class='gallery-item-image'
+          src='{{webformatURL}}'
+          alt='{{tags}}'
+          width='150'
+        />
+      </a>
+
+      <ul class='gallery-item-meta'>
+        <li class='gallery-item-likes'>
+          <h3>likes</h3>
+          <p>{{likes}}</p>
+        </li>
+        <li class='gallery-item-views'>
+          <h3>views</h3>
+          <p>{{views}}</p>
+        </li>
+        <li class='gallery-item-comments'>
+          <h3>comments</h3>
+          <p>{{comments}}</p>
+        </li>
+        <li class='gallery-item-downloads'>
+          <h3>downloads</h3>
+          <p>{{downloads}}</p>
+        </li>
+      </ul>
+    </article>
+  </li>
+{{/each}}
