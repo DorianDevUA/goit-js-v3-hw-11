@@ -4,15 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <link href="./css/style.css" rel="stylesheet" />
-    <title>Vite template v1.0.0</title>
+    <title>Домашнє завдання №11</title>
   </head>
   <body>
     <div class="container">
-      <load src="./partials/header.html" icon-path="./img/sprite.svg#hexagon" />
-      <div id="root"></div>
-      <load src="./partials/footer.html" />
+      <h1>HTTP-запити та взаємодія з бекендом</h1>
+      <h2>JavaScript v3 (Module 11)</h2>
+
+      <form class="js-search-form">
+        <input type="text" name="query" id="searchQuery" />
+        <button type="submit" data-action="search">Пошук</button>
+      </form>
+      <div class="js-loader"></div>
+      <ul class="js-gallery"></ul>
+      <div class="js-guard"></div>
     </div>
-    <script type="module" src="./js/main.js"></script>
+    <script type="module" src="./main.js"></script>
   </body>
 </html>
