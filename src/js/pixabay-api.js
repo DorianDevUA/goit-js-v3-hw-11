@@ -18,6 +18,14 @@ export default class PixabayApiService {
     this.#searchQuery = newQuery;
   }
 
+  get page() {
+    return this.#galleryPage;
+  }
+
+  set page(newPage) {
+    this.#galleryPage = newPage;
+  }
+
   incrementPage() {
     this.#galleryPage += 1;
   }
@@ -46,9 +54,9 @@ export default class PixabayApiService {
 
         return resp.json();
       })
-      .then(({ hits }) => {
+      .then(data => {
         this.incrementPage();
-        return hits;
+        return data;
       });
   }
 }
