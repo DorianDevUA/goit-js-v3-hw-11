@@ -39,7 +39,7 @@ export default class PixabayApiService {
       key: API_KEY,
       q: this.#searchQuery,
       page: this.#galleryPage,
-      per_page: 5,
+      per_page: 10,
       image_type: 'photo',
       orientation: 'horizontal',
       safesearch: true,
