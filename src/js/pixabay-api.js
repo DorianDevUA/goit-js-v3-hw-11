@@ -8,6 +8,8 @@ export default class PixabayApiService {
   constructor() {
     this.#searchQuery = '';
     this.#galleryPage = 1;
+    this.perPage = 10;
+    this.isLastPage = false;
   }
 
   get query() {
@@ -39,7 +41,7 @@ export default class PixabayApiService {
       key: API_KEY,
       q: this.#searchQuery,
       page: this.#galleryPage,
-      per_page: 10,
+      per_page: this.perPage,
       image_type: 'photo',
       orientation: 'horizontal',
       safesearch: true,
@@ -56,6 +58,13 @@ export default class PixabayApiService {
       })
       .then(data => {
         this.incrementPage();
+        const result = this.#galleryPage * this.perPage;
+        if (result > data.totalHits) {
+          this.isLastPage = true;
+          console.log('This is last page!');
+          console.log('isLastPage:', this.isLastPage);
+        }
+
         return data;
       });
   }
