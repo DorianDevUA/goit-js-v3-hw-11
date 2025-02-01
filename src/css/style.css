@@ -18,6 +18,7 @@
 /* @import url('./page2.css'); */
 
 /* Sections style */
+@import url('./gallery-search.css');
 @import url('./gallery.css');
 
 /* @import url('./header.css'); */
