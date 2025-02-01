@@ -1,50 +1,88 @@
 import './css/style.css';
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
 import getRefs from './js/getRefs';
+import CustomButton from './js/components/custom-button';
 import PixabayApiService from './js/pixabay-api';
+import SimpleLightboxServise from './js/utils/simple-lightbox';
+import izitoastApi from './js/utils/iziToast-api';
 import {
-  appendGalleryItemsMarkup,
+  appendGalleryItems,
   clearGalleryContainer,
 } from './js/render-functions';
 
 const refs = getRefs();
-const pixabayApiService = new PixabayApiService();
-// const options = {
-//   root: null,
-//   rootMargin: '300px',
-// };
-// const observer = new IntersectionObserver(onLoadMore, options);
-let simplelightbox;
+const pixabayApi = new PixabayApiService();
+const imageLightbox = new SimpleLightboxServise();
+const gallerySearchBtn = new CustomButton({
+  selector: '.js-gallery-search-btn',
+  enabledLabel: 'Знайти',
+  disabledLabel: 'Пошук',
+});
+const loadMoreBtn = new CustomButton({
+  selector: '.js-load-more-btn',
+  enabledLabel: 'Показати ще',
+  disabledLabel: 'Завантаження',
+  hidden: true,
+});
+
+gallerySearchBtn.enable();
 
 refs.searchForm.addEventListener('submit', onSearch);
+refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
 function onSearch(evt) {
   evt.preventDefault();
 
   const form = evt.currentTarget;
-  const query = form.elements.query.value.trim();
+  pixabayApi.searchQuery = form.elements.query.value;
 
-  if (!query) {
-    alert('Введіть пошуковий запит');
+  if (!pixabayApi.searchQuery) {
+    izitoastApi.showWarningMsg(izitoastApi.MESSAGES.BAD_REQUEST);
     return;
   }
 
-  pixabayApiService.query = query;
-  pixabayApiService.resetPage();
-  pixabayApiService.fetchImages().then(({ hits }) => {
-    clearGalleryContainer();
-    appendGalleryItemsMarkup(hits);
-    simplelightbox = new SimpleLightbox('.js-gallery a');
+  resetGallery();
+  fillGallery().then(() => {
+    imageLightbox.initialize();
+    gallerySearchBtn.enable();
   });
 
   form.reset();
 }
 
 function onLoadMore() {
-  console.log('test');
-  pixabayApiService.fetchImages().then(({ hits, totalHits }) => {
-    appendGalleryItemsMarkup(hits);
-    simplelightbox.refresh();
+  fillGallery().then(() => {
+    imageLightbox.refresh();
   });
+}
+
+function fillGallery() {
+  loadMoreBtn.disable();
+
+  return pixabayApi
+    .fetchImages()
+    .then(images => {
+      if (pixabayApi.searchQuery && !images.length) {
+        izitoastApi.showErrorMsg(izitoastApi.MESSAGES.NOT_FOUND);
+        return;
+      }
+
+      appendGalleryItems(images);
+    })
+    .then(() => {
+      if (pixabayApi.searchQuery && pixabayApi.isLastPage) {
+        loadMoreBtn.hide();
+        return;
+      }
+
+      loadMoreBtn.show();
+      loadMoreBtn.enable();
+    });
+}
+
+function resetGallery() {
+  pixabayApi.resetPage();
+  pixabayApi.isLastPage = false;
+  gallerySearchBtn.disable();
+  loadMoreBtn.hide();
+  clearGalleryContainer();
 }
