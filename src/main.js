@@ -41,10 +41,14 @@ function onSearch(evt) {
   }
 
   resetGallery();
-  fillGallery().then(() => {
-    imageLightbox.initialize();
-    gallerySearchBtn.enable();
-  });
+  fillGallery()
+    .then(() => {
+      imageLightbox.initialize();
+      gallerySearchBtn.enable();
+    })
+    .catch(error => {
+      console.log(error);
+    });
 
   form.reset();
 }
@@ -76,6 +80,9 @@ function fillGallery() {
 
       loadMoreBtn.show();
       loadMoreBtn.enable();
+    })
+    .catch(error => {
+      console.log(error);
     });
 }
 
