@@ -3,25 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/goit-js-v3-hw-11/vite.svg" />
-    <title>Домашнє завдання №11</title>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <title>JavaScript v3. Домашнє завдання №11</title>
     <script type="module" crossorigin src="/goit-js-v3-hw-11/index.js"></script>
-    <link rel="modulepreload" crossorigin href="/goit-js-v3-hw-11/assets/vendor-Bi_J8_6n.js">
-    <link rel="stylesheet" crossorigin href="/goit-js-v3-hw-11/assets/vendor-AL2zCFOW.css">
-    <link rel="stylesheet" crossorigin href="/goit-js-v3-hw-11/assets/index-Dan-tBzj.css">
+    <link rel="modulepreload" crossorigin href="/goit-js-v3-hw-11/assets/vendor-BV_-B_xx.js">
+    <link rel="stylesheet" crossorigin href="/goit-js-v3-hw-11/assets/vendor-CX4EDM7x.css">
+    <link rel="stylesheet" crossorigin href="/goit-js-v3-hw-11/assets/index-BAXzxt6o.css">
   </head>
   <body>
     <div class="container">
-      <h1>HTTP-запити та взаємодія з бекендом</h1>
-      <h2>JavaScript v3 (Module 11)</h2>
+      <div class="gallery-search">
+  <form class="gallery-search-form js-gallery-search-form">
+    <input
+      type="text"
+      class="gallery-search-input"
+      name="query"
+      placeholder="Search images..."
+    />
+    <button
+      type="submit"
+      data-action="search"
+      class="gallery-search-btn custom-btn js-gallery-search-btn"
+    >
+      <span class="custom-btn-label"></span>
+      <span class="custom-btn-spinner is-hidden"></span>
+    </button>
+  </form>
+</div>
 
-      <form class="js-search-form">
-        <input type="text" name="query" id="searchQuery" />
-        <button type="submit" data-action="search">Пошук</button>
-      </form>
-      <div class="js-loader"></div>
-      <ul class="js-gallery"></ul>
-      <div class="js-guard"></div>
+      <ul class="gallery js-gallery"></ul>
+      <span class="loader visually-hidden js-loader"></span>
+      <button type="button" class="custom-btn js-load-more-btn" data-action="load">
+  <span class="custom-btn-label"></span>
+  <span class="custom-btn-spinner is-hidden"></span>
+</button>
+
     </div>
   </body>
 </html>
