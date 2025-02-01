@@ -4,20 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <title>Домашнє завдання №11</title>
+    <title>JavaScript v3. Домашнє завдання №11</title>
   </head>
   <body>
     <div class="container">
-      <h1>HTTP-запити та взаємодія з бекендом</h1>
-      <h2>JavaScript v3 (Module 11)</h2>
-
-      <form class="js-search-form">
+      <form class="search-form js-search-form">
         <input type="text" name="query" id="searchQuery" />
         <button type="submit" data-action="search">Пошук</button>
       </form>
-      <div class="js-loader"></div>
-      <ul class="js-gallery"></ul>
-      <div class="js-guard"></div>
+      <ul class="gallery js-gallery"></ul>
+      <span class="loader visually-hidden js-loader"></span>
+      <load src="./partials/load-more-button.html" />
     </div>
     <script type="module" src="./main.js"></script>
   </body>
