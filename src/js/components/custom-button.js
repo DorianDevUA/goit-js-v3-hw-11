@@ -1,6 +1,8 @@
 export default class CustomButton {
-  constructor({ selector, hidden = false }) {
+  constructor({ selector, enabledLabel, disabledLabel, hidden = false }) {
     this.refs = this.getRefs(selector);
+    this.enabledLabel = enabledLabel;
+    this.disabledLabel = disabledLabel;
 
     hidden && this.hide();
   }
@@ -16,13 +18,13 @@ export default class CustomButton {
 
   enable() {
     this.refs.button.disabled = false;
-    this.refs.label.textContent = 'Показати ще';
+    this.refs.label.textContent = this.enabledLabel;
     this.refs.spinner.classList.add('is-hidden');
   }
 
   disable() {
     this.refs.button.disabled = true;
-    this.refs.label.textContent = 'Завантаження';
+    this.refs.label.textContent = this.disabledLabel;
     this.refs.spinner.classList.remove('is-hidden');
   }
 
