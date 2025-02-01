@@ -1,12 +1,12 @@
-import galleryItemTpl from '../templates/partials/galleryItem.hbs';
+import galleryItemTpl from '../templates/galleryItem.hbs';
 import getRefs from './getRefs';
 
 const refs = getRefs();
 
-export function appendGalleryItemsMarkup(items) {
-  refs.imageGallery.insertAdjacentHTML('beforeend', galleryItemTpl(items));
+export function appendGalleryItems(items) {
+  refs.galleryContainer.insertAdjacentHTML('beforeend', galleryItemTpl(items));
 }
 
 export function clearGalleryContainer() {
-  refs.imageGallery.innerHTML = '';
+  refs.galleryContainer.innerHTML = '';
 }
