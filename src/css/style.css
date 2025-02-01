@@ -6,9 +6,10 @@
 */
 /* Common styles */
 @import url('./reset.css');
-@import url('./base.css');
-@import url('./container.css');
 @import url('./common.css');
+@import url('./container.css');
+@import url('./visually-hidden.css');
+@import url('./custom-button.css');
 /* @import url('./animations.css'); */
 
 /* Pages style */
@@ -17,7 +18,8 @@
 /* @import url('./page2.css'); */
 
 /* Sections style */
-@import url('./css-loader.css');
+@import url('./gallery.css');
+
 /* @import url('./header.css'); */
 /* @import url('./back-link.css'); */
 /* @import url('./vite-promo.css'); */
